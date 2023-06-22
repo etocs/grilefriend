@@ -112,7 +112,7 @@ def get_ciba():
     key = config["yiyan_key"]
     yiyan_url = "https://apis.tianapi.com/wanan/index?key=70a7e6a0049a2a9d2957972a1b3124ff"
     request = get(yiyan_url, headers=headers)
-    note_ch = request.json()["content"]
+    note_ch = request.json()["result"]
     
     return note_ch
  
