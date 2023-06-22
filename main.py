@@ -103,16 +103,18 @@ def get_birthday(birthday, year, today):
  
  
 def get_ciba():
-    url = "http://open.iciba.com/dsapi/"
+    url = "https://apis.tianapi.com/wanan/index"
     headers = {
         'Content-Type': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
-    r = get(url, headers=headers)
-    note_en = r.json()["content"]
-    note_ch = r.json()["note"]
-    return note_ch, note_en
+    key = config["yiyan_key"]
+  yiyan_url = "https://apis.tianapi.com/wanan/index?key=70a7e6a0049a2a9d2957972a1b3124ff"
+    r = get(yiyan_url, headers=headers)
+    note_ch = r.json()["content"]
+    
+    return note_ch
  
  
 def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch, note_en):
@@ -224,10 +226,10 @@ if __name__ == "__main__":
     weather, temp, wind_dir = get_weather(region)
     note_ch = config["note_ch"]
     note_en = config["note_en"]
-    if note_ch == "" and note_en == "":
+   # if note_ch == "" and note_en == "":
         # 获取词霸每日金句
-        note_ch, note_en = get_ciba()
+     note_ch = get_ciba()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
+        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch)
     os.system("pause")
