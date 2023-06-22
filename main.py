@@ -110,7 +110,7 @@ def get_ciba():
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
     key = config["yiyan_key"]
-  yiyan_url = "https://apis.tianapi.com/wanan/index?key=70a7e6a0049a2a9d2957972a1b3124ff"
+    yiyan_url = "https://apis.tianapi.com/wanan/index?key=70a7e6a0049a2a9d2957972a1b3124ff"
     r = get(yiyan_url, headers=headers)
     note_ch = r.json()["content"]
     
