@@ -120,16 +120,9 @@ def get_ciba():
     return note_ch
 
 
- def get_60():
-  # 设置url
-     url = 'https://api.avdgw.com/api/mr60s?key=6I5hBXS0kWEJG7FeCLw0ojxqNd'
+
  
-  # 发送post请求
-    response = requests.post(url, data={'key1': 'value1', 'key2': 'value2'})
  
-  # 获取响应内容
-    result = response.json()
- return result
  
  
 def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch,result):
@@ -235,6 +228,14 @@ if __name__ == "__main__":
     # 传入地区获取天气信息
     region = config["region"]
     weather, temp, wind_dir = get_weather(region)
+  # 设置url
+    url = 'https://api.avdgw.com/api/mr60s?key=6I5hBXS0kWEJG7FeCLw0ojxqNd'
+ 
+  # 发送post请求
+    response = requests.post(url, data={'key1': 'value1', 'key2': 'value2'})
+ 
+  # 获取响应内容
+    result = response.json()
     #note_ch = config["note_ch"]
     #note_en = config["note_en"]
    # if note_ch == "" and note_en == "":
