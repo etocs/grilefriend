@@ -5,7 +5,10 @@ from datetime import datetime, date
 from zhdate import ZhDate
 import sys
 import os
+# 导入requests库
+import requests
  
+
  
 def get_color():
     # 获取随机颜色
@@ -115,9 +118,21 @@ def get_ciba():
     note_ch = r.json()["result"]["content"]
     
     return note_ch
+
+
+ def get_60():
+  # 设置url
+     url = 'https://api.avdgw.com/api/mr60s?key=6I5hBXS0kWEJG7FeCLw0ojxqNd'
+ 
+  # 发送post请求
+    response = requests.post(url, data={'key1': 'value1', 'key2': 'value2'})
+ 
+  # 获取响应内容
+    result = response.json()
+ return result
  
  
-def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch):
+def send_message(to_user, access_token, region_name, weather, temp, wind_dir, note_ch,result):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
     year = localtime().tm_year
@@ -227,5 +242,5 @@ if __name__ == "__main__":
     note_ch = get_ciba()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch)
+        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch,result)
     os.system("pause")
